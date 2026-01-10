@@ -11,8 +11,9 @@ import birthdayImage from '../assets/Birthday.png'
  */
 const JustForFun = () => {
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.1,
     triggerOnce: true,
+    rootMargin: '50px',
   })
   const funProject = {
     title: 'Interactive Birthday Website 🎂',
@@ -28,15 +29,16 @@ const JustForFun = () => {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
           className="text-4xl font-bold mb-4 text-center gradient-text"
+          style={{ willChange: 'opacity, transform' }}
         >
           Fun Experiments
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.4, delay: 0.05, ease: 'easeOut' }}
           className="text-center text-gray-400 mb-12"
         >
           Playful projects and experiments
@@ -44,10 +46,11 @@ const JustForFun = () => {
         
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
           className="glass-strong rounded-2xl p-6 md:p-8 border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300"
+          style={{ willChange: 'opacity, transform' }}
         >
           <div className="flex flex-col">
             {/* Project Image */}

@@ -7,6 +7,7 @@
   z-index: -2;  /* Stars behind content */
   pointer-events: none; 
   overflow: hidden;
+  will-change: contents; /* Optimize for animations */
 }
 
 .star {
@@ -17,6 +18,7 @@
   border-radius: 50%;
   opacity: 0;
   animation: sparkle 1.5s infinite ease-in-out;
+  will-change: transform, opacity; /* Optimize for animations */
 }
 
 @keyframes sparkle {

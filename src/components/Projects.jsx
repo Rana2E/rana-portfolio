@@ -1,8 +1,5 @@
 import React from 'react'
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
 import ProjectCard from './ProjectCard'
-import Stars from './Stars'
 import rewaqImage from '../assets/rewaq.svg'
 import unitokImage from '../assets/unitok.svg'
 import borikatImage from '../assets/Borikat.svg'
@@ -12,10 +9,6 @@ import borikatImage from '../assets/Borikat.svg'
  * Responsive grid layout displaying project cards
  */
 const Projects = () => {
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  })
   const projects = [
     {
       title: 'Rewaq X',
@@ -55,41 +48,24 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 px-4 relative overflow-hidden bg-black" aria-label="Projects section">
-      <Stars />
-      {/* Animated background gradient */}
+      {/* Simplified background - no stars for better performance */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 via-transparent to-cyan-900/5 pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-5xl font-bold mb-4 text-center gradient-text"
-        >
+        <h2 className="text-5xl font-bold mb-4 text-center gradient-text">
           Projects
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center text-gray-400 mb-12 text-lg"
-        >
+        </h2>
+        <p className="text-center text-gray-400 mb-12 text-lg">
           Showcasing innovation and creativity
-        </motion.p>
+        </p>
         
-        <div ref={ref} className="relative">
+        <div className="relative">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {projects.map((project, index) => {
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                  className="transition-all duration-300"
-                >
+                <div key={index}>
                   <ProjectCard project={project} />
-                </motion.div>
+                </div>
               )
             })}
           </div>

@@ -116,7 +116,7 @@ export default function Aurora(props) {
     const renderer = new Renderer({
       alpha: true,
       premultipliedAlpha: true,
-      antialias: true
+      antialias: false  // Disable antialiasing for better performance
     });
 
     const gl = renderer.gl;

@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Aurora from './Aurora'
+import Stars from './Stars'
 import ShinyText from './ShinyText'
 import StarBorder from './StarBorder'
 import { SiGithub } from 'react-icons/si'
@@ -31,6 +32,9 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+      {/* Stars background */}
+      <Stars />
+      
       {/* Aurora background with purple gradients */}
       <div className="absolute inset-0 opacity-60">
         <Aurora

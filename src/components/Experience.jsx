@@ -9,8 +9,9 @@ import Stars from './Stars'
  */
 const Experience = () => {
   const { ref, inView } = useInView({
-    threshold: 0.1,
+    threshold: 0.05,
     triggerOnce: true,
+    rootMargin: '50px',
   })
   const experiences = [
     {
@@ -36,15 +37,16 @@ const Experience = () => {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
           className="text-5xl font-bold mb-4 text-center gradient-text"
+          style={{ willChange: 'opacity, transform' }}
         >
           Experience
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.4, delay: 0.05, ease: 'easeOut' }}
           className="text-center text-gray-400 mb-12 text-lg"
         >
           Professional journey and growth
@@ -54,10 +56,11 @@ const Experience = () => {
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.4, delay: index * 0.05, ease: 'easeOut' }}
               className="glass-strong rounded-2xl p-8 border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300"
+              style={{ willChange: 'opacity, transform' }}
             >
               <h3 className="text-2xl font-bold mb-2 text-white">{exp.title}</h3>
               <p className="text-purple-300 mb-6 text-lg">

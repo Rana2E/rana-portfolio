@@ -29,8 +29,9 @@ import {
  */
 const Skills = () => {
   const { ref, inView } = useInView({
-    threshold: 0.1,
+    threshold: 0.05,
     triggerOnce: true,
+    rootMargin: '50px',
   })
 
   const techLogos = [
@@ -96,15 +97,16 @@ const Skills = () => {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
           className="text-5xl font-bold mb-4 text-center gradient-text"
+          style={{ willChange: 'opacity, transform' }}
         >
           Skills
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
           className="text-center text-gray-400 mb-12 text-lg"
         >
           Technologies I work with
@@ -130,11 +132,12 @@ const Skills = () => {
           {skillCategories.map((category, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.4, delay: index * 0.06, ease: 'easeOut' }}
               className="glass-strong rounded-2xl p-6 hover:scale-105 transition-transform duration-300 bg-gray-950/80"
               whileHover={{ y: -5 }}
+              style={{ willChange: 'opacity, transform' }}
             >
               <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                 {category.title}

@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Stars from './Stars'
+import RotatingText from './RotatingText'
 import meImage from '../assets/Me.jpeg'
 
 /**
@@ -10,8 +11,9 @@ import meImage from '../assets/Me.jpeg'
  */
 const AboutMe = () => {
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.1,
     triggerOnce: true,
+    rootMargin: '50px',
   })
 
   return (
@@ -22,10 +24,11 @@ const AboutMe = () => {
         <div ref={ref} className="flex flex-col md:flex-row gap-8 items-start">
           {/* Profile Image - Smaller */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
             className="w-full md:w-64 flex-shrink-0 aspect-square rounded-2xl overflow-hidden glass-strong relative group"
+            style={{ willChange: 'opacity, transform' }}
           >
             <img 
               src={meImage} 
@@ -39,10 +42,11 @@ const AboutMe = () => {
 
           {/* Text content - Enhanced */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.15, ease: 'easeOut' }}
             className="flex-1 space-y-8"
+            style={{ willChange: 'opacity, transform' }}
           >
             <div>
               <h3 className="text-4xl font-bold mb-6 text-purple-300">
@@ -61,18 +65,23 @@ const AboutMe = () => {
               </div>
               
               <p className="text-lg text-gray-300 leading-relaxed">
-                I enjoy adding my own touches through <span className="text-gray-100 font-semibold">thoughtful layout choices</span>, <span className="text-gray-100 font-semibold">subtle interactions</span>, and <span className="text-gray-100 font-semibold">small details</span> that make an interface feel more alive and intentional. I believe that <span className="text-purple-300 font-semibold">simple, clear interfaces</span> create the best results.
+               <span className="text-gray-100 font-semibold"></span> I believe that <span className="text-purple-300 font-semibold">simple, clear interfaces</span> create the best results.
               </p>
-              
+      
               <div className="flex flex-wrap gap-3 pt-2">
-                <span className="px-4 py-2 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-700/40 rounded-full text-sm text-gray-300 backdrop-blur-sm">
-                  Detail-Oriented
-                </span>
-                <span className="px-4 py-2 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-700/40 rounded-full text-sm text-gray-300 backdrop-blur-sm">
-                  Quality-Focused
-                </span>
-                <span className="px-4 py-2 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-700/40 rounded-full text-sm text-gray-300 backdrop-blur-sm">
-                  Continuous Learner
+                <span className="px-4 py-2 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-700/40 rounded-full text-sm text-gray-300 backdrop-blur-sm inline-flex items-center min-h-[2.5rem]">
+                  <RotatingText
+                    texts={['Detail-Oriented', 'Quality-Focused', 'Continuous Learner']}
+                    mainClassName="inline-block"
+                    staggerFrom="last"
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    exit={{ y: "-120%" }}
+                    staggerDuration={0.025}
+                    splitLevelClassName="overflow-hidden"
+                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                    rotationInterval={2000}
+                  />
                 </span>
               </div>
               

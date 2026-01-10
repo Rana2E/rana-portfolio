@@ -1,6 +1,5 @@
 import React from 'react'
 import StarBorder from './StarBorder'
-import { motion } from 'framer-motion'
 
 /**
  * Project Card Component
@@ -8,19 +7,17 @@ import { motion } from 'framer-motion'
  */
 const ProjectCard = ({ project }) => {
   return (
-    <motion.article
-      className="group relative"
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.3 }}
+    <article
+      className="group relative transition-transform duration-200 hover:-translate-y-1"
       aria-label={`Project: ${project.title}`}
     >
-      {/* Gradient border effect */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 rounded-2xl opacity-0 group-hover:opacity-75 blur transition duration-500"></div>
+      {/* Gradient border effect - simplified */}
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 rounded-2xl opacity-0 group-hover:opacity-60 blur transition duration-300"></div>
       
       <div className="relative glass-strong rounded-2xl overflow-hidden h-full flex flex-col bg-gray-950/80">
         {/* Project Image */}
         <div className="w-full h-56 bg-gradient-to-br from-purple-900/30 via-pink-900/30 to-cyan-900/30 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+          {/* Simplified shimmer effect - removed for performance */}
           {project.image ? (
             <img 
               src={project.image} 
@@ -52,14 +49,12 @@ const ProjectCard = ({ project }) => {
           {/* Tech stack */}
           <div className="flex flex-wrap gap-2 mb-4">
             {project.techStack.map((tech, index) => (
-              <motion.span
+              <span
                 key={index}
-                className="px-3 py-1 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-700/40 rounded-full text-sm text-gray-300 backdrop-blur-sm"
-                whileHover={{ scale: 1.05, borderColor: 'rgba(139, 92, 246, 0.6)' }}
-                transition={{ duration: 0.2 }}
+                className="px-3 py-1 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-700/40 rounded-full text-sm text-gray-300 backdrop-blur-sm transition-transform duration-200 hover:scale-105 hover:border-purple-500/60"
               >
                 {tech}
-              </motion.span>
+              </span>
             ))}
           </div>
 
@@ -140,7 +135,7 @@ const ProjectCard = ({ project }) => {
           </div>
         </div>
       </div>
-    </motion.article>
+    </article>
   )
 }
 

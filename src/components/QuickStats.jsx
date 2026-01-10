@@ -10,8 +10,9 @@ import Stars from './Stars'
  */
 const QuickStats = () => {
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.1,
     triggerOnce: true,
+    rootMargin: '50px',
   })
 
   return (
@@ -24,15 +25,16 @@ const QuickStats = () => {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
           className="text-5xl font-bold mb-4 text-center gradient-text"
+          style={{ willChange: 'opacity, transform' }}
         >
           Quick Stats
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
           className="text-center text-gray-400 mb-12 text-lg"
         >
           Academic achievements and expertise
@@ -41,11 +43,12 @@ const QuickStats = () => {
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* GPA Counter */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.4, delay: 0.05, ease: 'easeOut' }}
             className="glass-strong rounded-2xl p-8 text-center hover:scale-105 transition-transform duration-300 bg-gray-950/80"
             whileHover={{ y: -5 }}
+            style={{ willChange: 'opacity, transform' }}
           >
             <div className="text-5xl font-bold gradient-text mb-3">
               {inView && (
@@ -63,11 +66,12 @@ const QuickStats = () => {
 
           {/* Degree */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
             className="glass-strong rounded-2xl p-8 text-center hover:scale-105 transition-transform duration-300 bg-gray-950/80"
             whileHover={{ y: -5 }}
+            style={{ willChange: 'opacity, transform' }}
           >
             <div className="text-4xl font-bold gradient-text mb-3">
               B.Sc.
@@ -77,11 +81,12 @@ const QuickStats = () => {
 
           {/* Platforms */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.15, ease: 'easeOut' }}
             className="glass-strong rounded-2xl p-8 text-center hover:scale-105 transition-transform duration-300 bg-gray-950/80"
             whileHover={{ y: -5 }}
+            style={{ willChange: 'opacity, transform' }}
           >
             <div className="text-4xl font-bold gradient-text mb-3">
               Web & Mobile
