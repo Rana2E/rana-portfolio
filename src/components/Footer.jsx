@@ -40,22 +40,22 @@ const Footer = () => {
             <div className="flex flex-col gap-3">
               <a
                 href="https://github.com/Rana2E"
-                target="_blank"
-                rel="noopener noreferrer"
+              target="_blank"
+              rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group"
-              >
+            >
                 <SiGithub className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>GitHub</span>
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
+            </a>
+            <a
+              href="https://www.linkedin.com/in/rana-ehab-b51204311/"
+              target="_blank"
+              rel="noopener noreferrer"
                 className="text-gray-400 hover:text-purple-300 transition-colors flex items-center gap-2 group"
-              >
+            >
                 <SiLinkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>LinkedIn</span>
-              </a>
+            </a>
             </div>
           </div>
 
