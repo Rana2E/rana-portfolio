@@ -5,10 +5,12 @@ import StarBorder from './StarBorder'
  * Project Card Component
  * Reusable card component for displaying projects
  */
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, className = '' }) => {
+  const imageHeight = project.imageHeight || 'h-56'
+
   return (
     <article
-      className="group relative transition-transform duration-200 hover:-translate-y-1"
+      className={`group relative transition-transform duration-200 hover:-translate-y-1 h-full ${className}`}
       aria-label={`Project: ${project.title}`}
     >
       {/* Gradient border effect - simplified */}
@@ -16,13 +18,13 @@ const ProjectCard = ({ project }) => {
       
       <div className="relative glass-strong rounded-2xl overflow-hidden h-full flex flex-col bg-gray-950/80">
         {/* Project Image */}
-        <div className="w-full h-56 bg-gradient-to-br from-purple-900/30 via-pink-900/30 to-cyan-900/30 relative overflow-hidden">
+        <div className={`w-full ${imageHeight} bg-gradient-to-br from-purple-900/30 via-pink-900/30 to-cyan-900/30 relative overflow-hidden`}>
           {/* Simplified shimmer effect - removed for performance */}
           {project.image ? (
             <img 
               src={project.image} 
               alt={project.title}
-              className="w-full h-full object-cover z-10"
+              className={`w-full h-full object-cover z-10 ${project.imagePosition || ''}`}
               loading="lazy"
               decoding="async"
             />
@@ -34,9 +36,9 @@ const ProjectCard = ({ project }) => {
         </div>
 
         {/* Content */}
-        <div className="p-6 flex-1 flex flex-col">
-          <h3 className="text-2xl font-bold mb-1 gradient-text">{project.title}</h3>
-          <div className="flex items-center gap-2 mb-3">
+        <div className="p-4 sm:p-6 flex-1 flex flex-col">
+          <h3 className="text-xl sm:text-2xl font-bold mb-1 gradient-text">{project.title}</h3>
+          <div className="flex flex-wrap items-center gap-2 mb-3">
             {project.role && (
               <p className="text-sm text-cyan-400 font-medium">{project.role}</p>
             )}
@@ -44,14 +46,14 @@ const ProjectCard = ({ project }) => {
               <span className="text-xs text-gray-400 italic">• {project.note}</span>
             )}
           </div>
-          <p className="text-gray-300 mb-4 leading-relaxed flex-1">{project.description}</p>
+          <p className="text-sm sm:text-base text-gray-300 mb-4 leading-relaxed flex-1">{project.description}</p>
 
           {/* Tech stack */}
           <div className="flex flex-wrap gap-2 mb-4">
             {project.techStack.map((tech, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-700/40 rounded-full text-sm text-gray-300 backdrop-blur-sm transition-transform duration-200 hover:scale-105 hover:border-purple-500/60"
+                className="px-2.5 py-1 sm:px-3 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-700/40 rounded-full text-xs sm:text-sm text-gray-300 backdrop-blur-sm transition-transform duration-200 hover:scale-105 hover:border-purple-500/60"
               >
                 {tech}
               </span>
@@ -93,7 +95,7 @@ const ProjectCard = ({ project }) => {
                 color="blue"
                 speed="5s"
               >
-                Project Website
+                {project.links.websiteLabel || 'Project Website'}
               </StarBorder>
             )}
             {project.links?.demo && (

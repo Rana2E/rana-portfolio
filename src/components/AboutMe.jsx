@@ -53,25 +53,31 @@ const AboutMe = () => {
                 About Me
               </h3>
               <p className="text-xl text-gray-100 leading-relaxed mb-6 font-light">
-                I'm a <span className="text-purple-300 font-semibold">Frontend Developer</span> who enjoys turning designs into complete, real-world experiences that are simple, clear, and easy to use.
+                I'm a <span className="text-purple-300 font-semibold">Software Engineer</span> with a strong passion for building high-quality digital products and solving complex technical challenges.
               </p>
             </div>
             
             <div className="space-y-6">
               <div className="glass-strong rounded-xl p-6 border border-purple-500/20">
                 <p className="text-lg text-gray-300 leading-relaxed">
-                  I care about <span className="text-purple-300 font-semibold">pleasing the user's eye</span> while focusing on helping them move smoothly through the interface and reach their goal within the website or application. For me, <span className="text-purple-300 font-semibold">good design</span> is one where everything flows naturally and feels effortless.
+                  My experience spans modern <span className="text-purple-300 font-semibold">mobile development</span>, <span className="text-purple-300 font-semibold">web applications</span>, <span className="text-purple-300 font-semibold">ERP systems</span>, and <span className="text-purple-300 font-semibold">full product delivery</span>. Throughout various projects, I have been involved in everything from designing user experiences and developing scalable applications to <span className="text-purple-300 font-semibold">integrating business systems</span> and <span className="text-purple-300 font-semibold">deploying production-ready solutions</span>.
+                  I thrive in environments that require <span className="text-purple-300 font-semibold">continuous learning</span>, <span className="text-purple-300 font-semibold">adaptability</span>, and <span className="text-purple-300 font-semibold">ownership</span>. Rather than limiting myself to a single technology or specialization, I focus on understanding problems deeply and delivering <span className="text-purple-300 font-semibold">reliable</span> solutions that create value for both users and organizations.
                 </p>
               </div>
               
               <p className="text-lg text-gray-300 leading-relaxed">
-               <span className="text-gray-100 font-semibold"></span> I believe that <span className="text-purple-300 font-semibold">simple, clear interfaces</span> create the best results.
+              I build softwares that are not only functional, but meaningful, scalable, and impactful.
               </p>
       
               <div className="flex flex-wrap gap-3 pt-2">
                 <span className="px-4 py-2 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-700/40 rounded-full text-sm text-gray-300 backdrop-blur-sm inline-flex items-center min-h-[2.5rem]">
                   <RotatingText
-                    texts={['Detail-Oriented', 'Quality-Focused', 'Continuous Learner']}
+                    texts={['Software Engineer',
+                            'Frontend Engineer',
+                            'Full-Stack Engineer',
+                            'Flutter Developer',
+                            'Web Developer',
+                            'ERP Developer']}
                     mainClassName="inline-block"
                     staggerFrom="last"
                     initial={{ y: "100%" }}
@@ -84,10 +90,7 @@ const AboutMe = () => {
                   />
                 </span>
               </div>
-              
-              <p className="text-lg text-gray-300 leading-relaxed pt-2">
-                I'm <span className="text-gray-100 font-semibold">detail-oriented</span>, prefer building things properly rather than rushing, and I genuinely enjoy my work. I'm always eager to <span className="text-purple-300 font-semibold">learn, grow, and continuously improve</span> as a developer.
-              </p>
+        
             </div>
           </motion.div>
         </div>

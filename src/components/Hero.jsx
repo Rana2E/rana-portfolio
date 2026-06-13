@@ -77,7 +77,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          Frontend & Flutter UI Developer
+          Software Engineer
         </motion.p>
         
         {/* Description */}
@@ -87,7 +87,7 @@ const Hero = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1 }}
         >
-          I build interactive, clean, and user-focused web & mobile interfaces.
+          Turning ideas into apps, websites, and occasionally midnight debugging sessions.
         </motion.p>
         
         {/* Social Links */}

@@ -20,7 +20,8 @@ import {
   SiCss3,
   SiBootstrap,
   SiLaravel,
-  SiAngular
+  SiAngular,
+  SiHostinger
 } from 'react-icons/si'
 
 /**
@@ -54,6 +55,7 @@ const Skills = () => {
     { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
     { node: <SiGithub />, title: "GitHub", href: "https://github.com" },
     { node: <SiVercel />, title: "Vercel", href: "https://vercel.com" },
+    { node: <SiHostinger />, title: "Hostinger", href: "https://www.hostinger.com" },
     // Mobile
     { node: <SiFlutter />, title: "Flutter", href: "https://flutter.dev" },
     // Supporting
@@ -75,7 +77,7 @@ const Skills = () => {
     },
     {
       title: 'Tools',
-      skills: ['Git', 'GitHub', 'Vercel', 'API Integration'],
+      skills: ['Git', 'GitHub', 'Vercel', 'Hostinger', 'API Integration'],
     },
     {
       title: 'Mobile',
