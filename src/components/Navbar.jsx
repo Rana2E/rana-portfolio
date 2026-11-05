@@ -103,8 +103,31 @@ const Navbar = () => {
     }
   }, [isScrolled])
 
+  const scrollToHref = (href) => {
+    const run = () => {
+      const element = document.getElementById(href.replace('#', ''))
+      if (!element) return false
+      const offsetPosition = Math.max(0, getDocumentTop(element) - NAV_OFFSET)
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: reduceMotion ? 'auto' : 'smooth',
+      })
+      return true
+    }
+
+    if (run()) return
+
+    // Lazy sections may not be mounted on the first tap — retry briefly.
+    let attempts = 0
+    const timer = window.setInterval(() => {
+      attempts += 1
+      if (run() || attempts >= 24) window.clearInterval(timer)
+    }, 50)
+  }
+
   const handleNavClick = (e, href) => {
     e.preventDefault()
+    e.stopPropagation()
     setIsMobileMenuOpen(false)
     activeRef.current = href
     setActiveSection(href)
@@ -114,14 +137,8 @@ const Navbar = () => {
       clickLockRef.current = false
     }, reduceMotion ? 50 : 900)
 
-    const element = document.querySelector(href)
-    if (element) {
-      const offsetPosition = getDocumentTop(element) - NAV_OFFSET
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: reduceMotion ? 'auto' : 'smooth',
-      })
-    }
+    // Wait for the mobile drawer close animation so layout height doesn't cancel scroll.
+    window.setTimeout(() => scrollToHref(href), reduceMotion ? 0 : 320)
   }
 
   const scrollToTop = () => {
@@ -251,23 +268,22 @@ const Navbar = () => {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden md:hidden"
                 >
-                  <div className="space-y-2 pb-2 pt-4">
+                  <div className="relative z-10 space-y-1 pb-2 pt-4">
                     {NAV_LINKS.map((link) => {
                       const isActive = activeSection === link.href
                       return (
-                        <motion.a
+                        <a
                           key={link.name}
                           href={link.href}
                           onClick={(e) => handleNavClick(e, link.href)}
-                          className={`block rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+                          className={`block rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
                             isActive
                               ? 'bg-cyan/10 text-cyan'
-                              : 'text-muted hover:bg-white/5 hover:text-parchment'
+                              : 'text-muted active:bg-white/5 hover:bg-white/5 hover:text-parchment'
                           }`}
-                          whileHover={reduceMotion ? undefined : { x: 4 }}
                         >
                           {link.name}
-                        </motion.a>
+                        </a>
                       )
                     })}
                   </div>
