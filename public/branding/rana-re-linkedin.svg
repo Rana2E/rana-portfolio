@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1600" viewBox="0 0 1000 1000" role="img" aria-label="RE monogram">
+  <!--
+    Exact overlapping RE letterforms from src/components/Monogram.jsx
+    Frame, construction lines, and caption removed for LinkedIn circular crop.
+    ~18% safe padding around the letter cluster.
+  -->
+  <rect width="1000" height="1000" fill="#090B12"/>
+  <g transform="translate(500 500) scale(2.72) translate(-204 -217)">
+    <text
+      x="118"
+      y="276"
+      fill="#F0EFF4"
+      font-family="Instrument Serif, Georgia, serif"
+      font-size="188"
+      font-style="italic"
+      letter-spacing="-14"
+    >R</text>
+    <text
+      x="176"
+      y="286"
+      fill="#BFA0EC"
+      fill-opacity="0.94"
+      font-family="Instrument Serif, Georgia, serif"
+      font-size="188"
+      font-style="italic"
+      letter-spacing="-14"
+    >E</text>
+  </g>
+</svg>

@@ -1,0 +1,50 @@
+[
+  {
+    "viewport": "1920x1080",
+    "shot": "tmp-hero-verify\\re-restored-1920x1080.png",
+    "lockup": true,
+    "rTop": 202,
+    "rTopVisible": true,
+    "lettersOverlap": true,
+    "toneOpacity": 0.92,
+    "monoW": 704,
+    "overflowX": 0,
+    "noFrame": true
+  },
+  {
+    "viewport": "1440x900",
+    "shot": "tmp-hero-verify\\re-restored-1440x900.png",
+    "lockup": true,
+    "rTop": 159,
+    "rTopVisible": true,
+    "lettersOverlap": true,
+    "toneOpacity": 0.92,
+    "monoW": 605,
+    "overflowX": 0,
+    "noFrame": true
+  },
+  {
+    "viewport": "1024x768",
+    "shot": "tmp-hero-verify\\re-restored-1024x768.png",
+    "lockup": true,
+    "rTop": 196,
+    "rTopVisible": true,
+    "lettersOverlap": true,
+    "toneOpacity": 0.92,
+    "monoW": 389,
+    "overflowX": 0,
+    "noFrame": true
+  },
+  {
+    "viewport": "390x844",
+    "shot": "tmp-hero-verify\\re-restored-390x844.png",
+    "lockup": true,
+    "rTop": 376,
+    "rTopVisible": true,
+    "lettersOverlap": true,
+    "toneOpacity": 0.22,
+    "monoW": 208,
+    "overflowX": 0,
+    "noFrame": true
+  }
+]

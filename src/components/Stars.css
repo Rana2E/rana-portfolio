@@ -1,24 +1,31 @@
 .star-container {
   position: absolute;
-  top: 0%;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2;  /* Stars behind content */
-  pointer-events: none; 
+  z-index: 0;
+  pointer-events: none;
   overflow: hidden;
-  will-change: contents; /* Optimize for animations */
+}
+
+.star-container--fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .star {
   position: absolute;
-  width: 0.1px;  /* Small size for stars */
-  height: 0.1px;  /* Small size for stars */
-  background-color: white;  /* White color for stars */
+  width: 1.2px;
+  height: 1.2px;
+  background-color: rgba(240, 239, 244, 0.9);
   border-radius: 50%;
   opacity: 0;
   animation: sparkle 1.5s infinite ease-in-out;
-  will-change: transform, opacity; /* Optimize for animations */
+  /* Avoid permanent will-change layers on 30 stars — costly during scroll */
 }
 
 @keyframes sparkle {
@@ -27,8 +34,8 @@
     opacity: 0;
   }
   50% {
-    transform: scale(1.5);  /* Slightly larger when sparkling */
-    opacity: 1;  /* Fully visible when sparkling */
+    transform: scale(1.5);
+    opacity: 0.85;
   }
 }
 
@@ -233,3 +240,9 @@
   top: 6%; left: 50%; animation-delay: 14.7s;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .star {
+    animation: none;
+    opacity: 0.35;
+  }
+}

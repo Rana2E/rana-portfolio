@@ -1,106 +1,91 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import Stars from './Stars'
 import StarBorder from './StarBorder'
 import birthdayImage from '../assets/Birthday.png'
 
-/**
- * Just for Fun Section
- * Section for playful/experimental projects with simple card layout
- */
 const JustForFun = () => {
+  const reduceMotion = useReducedMotion()
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true,
     rootMargin: '50px',
   })
+
   const funProject = {
-    title: 'Interactive Birthday Website 🎂',
-    description: 'A heartfelt interactive web experience created as a personal birthday gift for my brother who was studying abroad. Built with vanilla JavaScript and CSS, the experience begins with a click-to-play birthday song, followed by an interactive candle-blowing feature using microphone input. Users can blow into their microphone to extinguish the candles, then scroll to reveal a personalized birthday message. This project explores animation, sound integration, and user-triggered interactions to create an emotional connection across distances.',
-    focus: ['JavaScript', 'CSS', 'Animation', 'Interaction design'],
+    title: 'Interactive Birthday Website',
+    description:
+      'A personal JavaScript and CSS gift for my brother while he was studying abroad. The experience starts with a birthday song, then uses microphone input so candles can be blown out before a handwritten message appears. It is a small study in animation, sound, and interaction — kept here because it still makes me smile.',
+    focus: ['JavaScript', 'CSS', 'Animation', 'Microphone interaction'],
     link: 'https://drive.google.com/file/d/1r4kOBKsYTwK5rtcXafuuOZA43o2b2DHC/view?usp=sharing',
   }
 
   return (
-    <section id="just-for-fun" className="py-20 px-4 relative">
-      <Stars />
-      <div className="max-w-4xl mx-auto relative z-10">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="text-4xl font-bold mb-4 text-center gradient-text"
-          style={{ willChange: 'opacity, transform' }}
-        >
-          Fun Experiments
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, delay: 0.05, ease: 'easeOut' }}
-          className="text-center text-gray-400 mb-12"
-        >
-          Playful projects and experiments
-        </motion.p>
-        
+    <section id="just-for-fun" className="relative scroll-mt-28 px-4 py-16 sm:px-6" aria-label="Fun experiments">
+      <div className="relative z-10 mx-auto max-w-4xl">
         <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
-          className="glass-strong rounded-2xl p-6 md:p-8 border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300"
-          style={{ willChange: 'opacity, transform' }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          animate={inView || reduceMotion ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.45 }}
+          className="mb-8 text-center"
         >
-          <div className="flex flex-col">
-            {/* Project Image */}
-            <div className="w-full rounded-xl overflow-hidden h-48 md:h-64 bg-gray-900/50 flex-shrink-0 shadow-lg mb-6">
-              <img 
-                src={birthdayImage} 
-                alt={funProject.title}
-                className="w-full h-full object-cover object-top"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            
-            {/* Content */}
-            <div className="flex flex-col">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">{funProject.title}</h3>
-              
-              <p className="text-gray-300 mb-6 leading-relaxed text-base md:text-lg">{funProject.description}</p>
-              
-              <div className="flex flex-wrap gap-2 mb-6">
-                {funProject.focus.map((item, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1.5 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-700/40 rounded-full text-xs md:text-sm text-gray-300 backdrop-blur-sm"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-              
-              <div>
-                <StarBorder
-                  as="a"
-                  href={funProject.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  color="purple"
-                  speed="5s"
-                  className="inline-block"
-                >
-                  Live Demo
-                </StarBorder>
-              </div>
-            </div>
-          </div>
+          <p className="section-kicker">Aside</p>
+          <h2 className="font-display text-3xl tracking-tight text-parchment sm:text-4xl">
+            Fun experiments
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm text-muted sm:text-base">
+            A quiet corner for playful ideas and little experiments.
+          </p>
         </motion.div>
+
+        <motion.article
+          ref={ref}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          animate={inView || reduceMotion ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.45, delay: 0.08 }}
+          className="glass-strong rounded-2xl border border-lavender/15 p-6 md:p-8"
+        >
+          <div className="mb-6 h-48 w-full overflow-hidden rounded-xl bg-ink-soft shadow-editorial md:h-56">
+            <img
+              src={birthdayImage}
+              alt={funProject.title}
+              className="h-full w-full object-cover object-top"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <h3 className="mb-3 font-display text-2xl italic text-parchment md:text-3xl">
+            {funProject.title}
+          </h3>
+          <p className="mb-5 text-sm leading-relaxed text-muted md:text-base">{funProject.description}</p>
+
+          <div className="mb-6 flex flex-wrap gap-2">
+            {funProject.focus.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-lavender/25 bg-surface/70 px-3 py-1.5 text-xs text-parchment md:text-sm"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <StarBorder
+            as="a"
+            href={funProject.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            color="#BFA0EC"
+            speed="5s"
+            className="inline-block"
+          >
+            Live Demo
+          </StarBorder>
+        </motion.article>
       </div>
     </section>
   )
 }
 
 export default JustForFun
-

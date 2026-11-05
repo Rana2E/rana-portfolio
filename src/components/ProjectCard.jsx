@@ -1,66 +1,73 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import StarBorder from './StarBorder'
+import DeferredImage from './DeferredImage'
 
-/**
- * Project Card Component
- * Reusable card component for displaying projects
- */
-const ProjectCard = ({ project, className = '' }) => {
+const ProjectCard = ({ project, className = '', priority = false }) => {
   const imageHeight = project.imageHeight || 'h-56'
+  const reduceMotion = useReducedMotion()
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (!open) return undefined
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [open])
 
   return (
     <article
-      className={`group relative transition-transform duration-200 hover:-translate-y-1 h-full ${className}`}
+      className={`project-card-shell group relative h-full transition-transform duration-200 hover:-translate-y-1 ${className}`}
       aria-label={`Project: ${project.title}`}
     >
-      {/* Gradient border effect - simplified */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 rounded-2xl opacity-0 group-hover:opacity-60 blur transition duration-300"></div>
-      
-      <div className="relative glass-strong rounded-2xl overflow-hidden h-full flex flex-col bg-gray-950/80">
-        {/* Project Image */}
-        <div className={`w-full ${imageHeight} bg-gradient-to-br from-purple-900/30 via-pink-900/30 to-cyan-900/30 relative overflow-hidden`}>
-          {/* Simplified shimmer effect - removed for performance */}
+      {/* Opacity-only glow — avoid animating filter:blur during scroll/hover paint */}
+      <div className="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-r from-lavender/50 via-cyan/40 to-lavender/50 opacity-0 transition-opacity duration-300 group-hover:opacity-70" />
+
+      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-lavender/15 bg-ink-soft/95">
+        <div
+          className={`relative w-full overflow-hidden bg-gradient-to-br from-surface via-ink to-surface ${imageHeight}`}
+        >
           {project.image ? (
-            <img 
-              src={project.image} 
-              alt={project.title}
-              className={`w-full h-full object-cover z-10 ${project.imagePosition || ''}`}
-              loading="lazy"
-              decoding="async"
+            <DeferredImage
+              src={project.image}
+              alt={`${project.title} preview`}
+              className={`z-10 h-full w-full object-cover ${project.imagePosition || ''}`}
+              eager={priority}
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <span className="text-gray-400 text-sm font-medium z-10">Project Image</span>
+            <div className="flex h-full w-full items-center justify-center">
+              <span className="z-10 text-sm font-medium text-muted">Project Image</span>
             </div>
           )}
         </div>
 
-        {/* Content */}
-        <div className="p-4 sm:p-6 flex-1 flex flex-col">
-          <h3 className="text-xl sm:text-2xl font-bold mb-1 gradient-text">{project.title}</h3>
-          <div className="flex flex-wrap items-center gap-2 mb-3">
+        <div className="flex flex-1 flex-col p-4 sm:p-6">
+          <h3 className="mb-1 text-xl font-medium text-parchment sm:text-2xl">{project.title}</h3>
+          <div className="mb-3 flex flex-wrap items-center gap-2">
             {project.role && (
-              <p className="text-sm text-cyan-400 font-medium">{project.role}</p>
+              <p className="text-sm font-medium text-cyan">{project.role}</p>
             )}
             {project.note && (
-              <span className="text-xs text-gray-400 italic">• {project.note}</span>
+              <span className="text-xs italic text-muted">• {project.note}</span>
             )}
           </div>
-          <p className="text-sm sm:text-base text-gray-300 mb-4 leading-relaxed flex-1">{project.description}</p>
+          <p className="mb-4 flex-1 text-sm leading-relaxed text-muted sm:text-base">
+            {project.description}
+          </p>
 
-          {/* Tech stack */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.techStack.map((tech, index) => (
+          <div className="mb-4 flex flex-wrap gap-2">
+            {project.techStack.map((tech) => (
               <span
-                key={index}
-                className="px-2.5 py-1 sm:px-3 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-700/40 rounded-full text-xs sm:text-sm text-gray-300 backdrop-blur-sm transition-transform duration-200 hover:scale-105 hover:border-purple-500/60"
+                key={tech}
+                className="rounded-full border border-lavender/25 bg-surface/80 px-2.5 py-1 text-xs text-parchment transition-transform duration-200 hover:scale-105 hover:border-cyan/40 sm:px-3 sm:text-sm"
               >
                 {tech}
               </span>
             ))}
           </div>
 
-          {/* Links */}
           <div className="flex flex-wrap gap-2">
             {project.links?.appStore && (
               <StarBorder
@@ -68,22 +75,10 @@ const ProjectCard = ({ project, className = '' }) => {
                 href={project.links.appStore}
                 target="_blank"
                 rel="noopener noreferrer"
-                color="blue"
+                color="#67CCD8"
                 speed="5s"
               >
                 App Store
-              </StarBorder>
-            )}
-            {project.links?.android && (
-              <StarBorder
-                as="a"
-                href={project.links.android}
-                target="_blank"
-                rel="noopener noreferrer"
-                color="green"
-                speed="5s"
-              >
-                Android
               </StarBorder>
             )}
             {project.links?.website && (
@@ -92,7 +87,7 @@ const ProjectCard = ({ project, className = '' }) => {
                 href={project.links.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                color="blue"
+                color="#BFA0EC"
                 speed="5s"
               >
                 {project.links.websiteLabel || 'Project Website'}
@@ -104,7 +99,7 @@ const ProjectCard = ({ project, className = '' }) => {
                 href={project.links.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                color="cyan"
+                color="#67CCD8"
                 speed="5s"
               >
                 Demo Video
@@ -116,7 +111,7 @@ const ProjectCard = ({ project, className = '' }) => {
                 href={project.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                color="white"
+                color="#F0EFF4"
                 speed="5s"
               >
                 GitHub
@@ -128,13 +123,67 @@ const ProjectCard = ({ project, className = '' }) => {
                 href={project.links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                color="blue"
+                color="#67CCD8"
                 speed="5s"
               >
                 LinkedIn
               </StarBorder>
             )}
           </div>
+
+          {project.caseStudy && (
+            <div className="mt-5 border-t border-line pt-4">
+              <button
+                type="button"
+                onClick={() => setOpen((value) => !value)}
+                className="text-sm font-medium text-lavender transition-colors hover:text-cyan"
+                aria-expanded={open}
+              >
+                {open ? 'Close case study' : 'Read case study'}
+              </button>
+
+              <AnimatePresence>
+                {open && (
+                  <motion.div
+                    initial={reduceMotion ? false : { opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={reduceMotion ? { opacity: 1 } : { opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35, ease: 'easeOut' }}
+                    className="overflow-hidden"
+                  >
+                    <div className="space-y-4 pt-4 text-sm leading-relaxed text-muted">
+                      <div>
+                        <h4 className="mb-1 text-xs uppercase tracking-[0.18em] text-cyan">Overview</h4>
+                        <p>{project.caseStudy.overview}</p>
+                      </div>
+                      <div>
+                        <h4 className="mb-1 text-xs uppercase tracking-[0.18em] text-cyan">Objective</h4>
+                        <p>{project.caseStudy.objective}</p>
+                      </div>
+                      <div>
+                        <h4 className="mb-1 text-xs uppercase tracking-[0.18em] text-cyan">Role</h4>
+                        <p>{project.caseStudy.role}</p>
+                      </div>
+                      <div>
+                        <h4 className="mb-1 text-xs uppercase tracking-[0.18em] text-cyan">
+                          Technical implementation
+                        </h4>
+                        <ul className="list-disc space-y-1 pl-5">
+                          {project.caseStudy.implementation.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="mb-1 text-xs uppercase tracking-[0.18em] text-cyan">Outcome</h4>
+                        <p>{project.caseStudy.outcome}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          )}
         </div>
       </div>
     </article>
@@ -142,4 +191,3 @@ const ProjectCard = ({ project, className = '' }) => {
 }
 
 export default ProjectCard
-

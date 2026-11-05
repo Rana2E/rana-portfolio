@@ -113,6 +113,11 @@ export default function Aurora(props) {
     const ctn = ctnDom.current;
     if (!ctn) return;
 
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      return;
+    }
+
     const renderer = new Renderer({
       alpha: true,
       premultipliedAlpha: true,

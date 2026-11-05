@@ -1,79 +1,102 @@
 import React from 'react'
-import { HiMail, HiPhone } from 'react-icons/hi'
+import { HiMail, HiDocumentText, HiPhone } from 'react-icons/hi'
 import { SiGithub, SiLinkedin } from 'react-icons/si'
-import Stars from './Stars'
+import StarBorder from './StarBorder'
+import CopyContact, { CopyFeedback } from './CopyContact'
+import useClipboard from '../hooks/useClipboard'
+import { SITE } from '../data/site'
 
-/**
- * Footer Section
- * Simple footer with links and copyright
- */
 const Footer = () => {
   const currentYear = new Date().getFullYear()
+  const emailClip = useClipboard()
 
   return (
-    <footer id="footer" className="py-12 px-4 bg-black border-t border-gray-900 relative">
-      <Stars />
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-6">
-          {/* Contact Information */}
-          <div className="flex flex-col gap-2">
-            <h3 className="text-lg font-bold text-gray-200 mb-2">Contact me</h3>
+    <>
+      <section id="contact" className="relative scroll-mt-28 px-4 py-20 sm:px-6" aria-label="Contact">
+        <div className="relative z-10 mx-auto max-w-3xl text-center">
+          <p className="section-kicker">Contact</p>
+          <h2 className="section-title">Let’s work together.</h2>
+          <p className="section-lede">
+            I&apos;m available for software engineering roles and selected freelance work across
+            mobile, full-stack web, and business systems.
+          </p>
+
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <span className="relative inline-flex">
+              <StarBorder
+                as="button"
+                type="button"
+                color="#BFA0EC"
+                speed="5s"
+                onClick={() => emailClip.copy(SITE.email)}
+                aria-label="Copy email address"
+              >
+                Copy Email
+              </StarBorder>
+              <CopyFeedback
+                copied={emailClip.copied}
+                error={emailClip.error}
+                copiedMessage="Email copied to clipboard"
+              />
+            </span>
             <a
-              href="mailto:RanaEhabHamadah@gmail.com"
-              className="text-gray-400 hover:text-purple-300 transition-colors flex items-center gap-3 group"
+              href={SITE.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-[18px] border border-line px-6 py-3.5 text-[15px] text-parchment transition-colors hover:border-lavender/50 hover:text-lavender"
             >
-              <HiMail className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              <span>RanaEhabHamadah@gmail.com</span>
-            </a>
-            <a
-              href="tel:+966542709910"
-              className="text-gray-400 hover:text-purple-300 transition-colors flex items-center gap-3 group"
-            >
-              <HiPhone className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              <span>0542709910</span>
+              <HiDocumentText className="h-5 w-5" />
+              Download Résumé
             </a>
           </div>
 
-          {/* Links */}
-          <div className="flex flex-col gap-2">
-            <h3 className="text-lg font-bold text-gray-200 mb-2">Links</h3>
-            <div className="flex flex-col gap-3">
-              <a
-                href="https://github.com/Rana2E"
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-8 text-sm text-muted">
+            <a
+              href={SITE.github}
               target="_blank"
               rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 group"
+              className="inline-flex items-center gap-2 transition-colors hover:text-parchment"
             >
-                <SiGithub className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                <span>GitHub</span>
+              <SiGithub className="h-5 w-5" />
+              GitHub
             </a>
             <a
-              href="https://www.linkedin.com/in/rana-ehab-b51204311/"
+              href={SITE.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-300 transition-colors flex items-center gap-2 group"
+              className="inline-flex items-center gap-2 transition-colors hover:text-parchment"
             >
-                <SiLinkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                <span>LinkedIn</span>
+              <SiLinkedin className="h-5 w-5" />
+              LinkedIn
             </a>
-            </div>
-          </div>
-
-          {/* Location and Copyright */}
-          <div className="text-right md:text-left">
-            <p className="text-gray-400 text-sm mb-1">
-              Location: Jeddah, Saudi Arabia
-            </p>
-            <p className="text-gray-500 text-sm">
-              © {currentYear} Rana Ehab Hamadah. All rights reserved.
-            </p>
+            <CopyContact
+              value={SITE.email}
+              label={SITE.email}
+              copiedMessage="Email copied to clipboard"
+              ariaLabel="Copy email address"
+              className="inline-flex items-center gap-2 transition-colors hover:text-parchment"
+              icon={<HiMail className="h-5 w-5" />}
+            />
+            <CopyContact
+              value={SITE.phone}
+              label={SITE.phoneLabel}
+              copiedMessage="Phone number copied"
+              ariaLabel="Copy phone number"
+              className="inline-flex items-center gap-2 transition-colors hover:text-parchment"
+              icon={<HiPhone className="h-5 w-5" />}
+            />
           </div>
         </div>
-      </div>
-    </footer>
+      </section>
+
+      <footer className="relative border-t border-line px-4 py-8">
+        <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 text-sm text-muted sm:flex-row">
+          <p>© {currentYear} {SITE.name}</p>
+          <p>{SITE.location}</p>
+        </div>
+      </footer>
+    </>
   )
 }
 
 export default Footer
-
-

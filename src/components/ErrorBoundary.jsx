@@ -17,15 +17,16 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex items-center justify-center bg-black p-4">
-          <div className="text-center max-w-md">
-            <h1 className="text-4xl font-bold text-white mb-4">Oops! Something went wrong</h1>
-            <p className="text-gray-400 mb-6">
-              We're sorry, but something unexpected happened. Please try refreshing the page.
+        <div className="flex min-h-screen items-center justify-center bg-ink p-4">
+          <div className="max-w-md text-center">
+            <h1 className="mb-4 font-display text-4xl text-parchment">Something went wrong</h1>
+            <p className="mb-6 text-muted">
+              An unexpected error occurred. Refresh the page to continue.
             </p>
             <button
+              type="button"
               onClick={() => window.location.reload()}
-              className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+              className="rounded-lg bg-lavender px-6 py-3 text-ink transition-colors hover:bg-cyan"
             >
               Refresh Page
             </button>
@@ -39,4 +40,3 @@ class ErrorBoundary extends React.Component {
 }
 
 export default ErrorBoundary
-

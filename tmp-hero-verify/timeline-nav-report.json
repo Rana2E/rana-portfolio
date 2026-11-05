@@ -1,0 +1,56 @@
+{
+  "timelines": [
+    {
+      "width": 1920,
+      "lineCenterX": 524,
+      "maxDeltaX": 0,
+      "markerCount": 4
+    },
+    {
+      "width": 1440,
+      "lineCenterX": 284,
+      "maxDeltaX": 0,
+      "markerCount": 4
+    },
+    {
+      "width": 1280,
+      "lineCenterX": 204,
+      "maxDeltaX": 0,
+      "markerCount": 4
+    },
+    {
+      "width": 768,
+      "lineCenterX": 36,
+      "maxDeltaX": 0,
+      "markerCount": 4
+    },
+    {
+      "width": 390,
+      "lineCenterX": 28,
+      "maxDeltaX": 0,
+      "markerCount": 4
+    }
+  ],
+  "spySamples": [
+    {
+      "scrolledTo": "about",
+      "activeHref": "#about"
+    },
+    {
+      "scrolledTo": "projects",
+      "activeHref": "#projects"
+    },
+    {
+      "scrolledTo": "skills",
+      "activeHref": "#skills"
+    },
+    {
+      "scrolledTo": "experience",
+      "activeHref": "#experience"
+    },
+    {
+      "scrolledTo": "contact",
+      "activeHref": "#contact"
+    }
+  ]
+}

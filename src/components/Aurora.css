@@ -5,5 +5,8 @@
   top: 0;
   left: 0;
   z-index: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(191, 160, 236, 0.2), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(103, 204, 216, 0.12), transparent 50%);
 }
 

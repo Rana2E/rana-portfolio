@@ -1,34 +1,72 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import LogoLoop from './LogoLoop'
-import Stars from './Stars'
-import { 
-  SiReact, 
-  SiNextdotjs, 
-  SiTypescript, 
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
   SiTailwindcss,
   SiJavascript,
-  SiFramer,
-  SiVite,
   SiGit,
   SiGithub,
-  SiVercel,
   SiFlutter,
   SiPython,
-  SiHtml5,
-  SiCss3,
   SiBootstrap,
   SiLaravel,
   SiAngular,
-  SiHostinger
+  SiDart,
+  SiPhp,
+  SiMysql,
+  SiPostgresql,
+  SiDocker,
+  SiFigma,
+  SiJira,
+  SiPostman,
+  SiGithubactions,
 } from 'react-icons/si'
 
-/**
- * Skills Section
- * Displays skills organized by category
- */
+const primaryExpertise = [
+  {
+    title: 'Mobile Development',
+    skills: ['Flutter', 'Dart', 'Android debugging', 'REST API integration', 'WebSockets'],
+  },
+  {
+    title: 'Full-Stack Web',
+    skills: ['Laravel', 'PHP', 'MySQL', 'Authentication', 'Role-based applications', 'Payment integrations'],
+  },
+  {
+    title: 'ERP & Business Systems',
+    skills: ['Odoo ERP', 'Odoo Studio', 'QWeb', 'Automated Actions', 'CRM workflows', 'Business requirements analysis'],
+  },
+]
+
+const additional = [
+  'React',
+  'Angular',
+  'Next.js',
+  'TypeScript',
+  'JavaScript',
+  'Python',
+  'PostgreSQL',
+  'Tailwind CSS',
+  'Bootstrap',
+]
+
+const tools = [
+  'Git',
+  'GitHub',
+  'GitHub Actions',
+  'Docker',
+  'Postman',
+  'Jira',
+  'Figma',
+  'CI/CD',
+  'Agile collaboration',
+]
+
 const Skills = () => {
+  const reduceMotion = useReducedMotion()
   const { ref, inView } = useInView({
     threshold: 0.05,
     triggerOnce: true,
@@ -36,128 +74,116 @@ const Skills = () => {
   })
 
   const techLogos = [
-    // Core Frontend
-    { node: <SiReact />, title: "React", href: "https://react.dev" },
-    { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
-    { node: <SiJavascript />, title: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
-    { node: <SiHtml5 />, title: "HTML", href: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
-    { node: <SiCss3 />, title: "CSS", href: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
-    // UI & Styling
-    { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
-    { node: <SiBootstrap />, title: "Bootstrap", href: "https://getbootstrap.com" },
-    { node: <SiFramer />, title: "Framer Motion", href: "https://www.framer.com/motion/" },
-    // Frameworks
-    { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
-    { node: <SiVite />, title: "Vite", href: "https://vitejs.dev" },
-    { node: <SiLaravel />, title: "Laravel", href: "https://laravel.com" },
-    { node: <SiAngular />, title: "Angular", href: "https://angular.io" },
-    // Tools
-    { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
-    { node: <SiGithub />, title: "GitHub", href: "https://github.com" },
-    { node: <SiVercel />, title: "Vercel", href: "https://vercel.com" },
-    { node: <SiHostinger />, title: "Hostinger", href: "https://www.hostinger.com" },
-    // Mobile
-    { node: <SiFlutter />, title: "Flutter", href: "https://flutter.dev" },
-    // Supporting
-    { node: <SiPython />, title: "Python", href: "https://www.python.org" },
+    { node: <SiFlutter />, title: 'Flutter', href: 'https://flutter.dev' },
+    { node: <SiDart />, title: 'Dart', href: 'https://dart.dev' },
+    { node: <SiLaravel />, title: 'Laravel', href: 'https://laravel.com' },
+    { node: <SiPhp />, title: 'PHP', href: 'https://www.php.net' },
+    { node: <SiMysql />, title: 'MySQL', href: 'https://www.mysql.com' },
+    { node: <SiReact />, title: 'React', href: 'https://react.dev' },
+    { node: <SiTypescript />, title: 'TypeScript', href: 'https://www.typescriptlang.org' },
+    { node: <SiJavascript />, title: 'JavaScript', href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
+    { node: <SiNextdotjs />, title: 'Next.js', href: 'https://nextjs.org' },
+    { node: <SiAngular />, title: 'Angular', href: 'https://angular.io' },
+    { node: <SiPython />, title: 'Python', href: 'https://www.python.org' },
+    { node: <SiPostgresql />, title: 'PostgreSQL', href: 'https://www.postgresql.org' },
+    { node: <SiTailwindcss />, title: 'Tailwind CSS', href: 'https://tailwindcss.com' },
+    { node: <SiBootstrap />, title: 'Bootstrap', href: 'https://getbootstrap.com' },
+    { node: <SiGit />, title: 'Git', href: 'https://git-scm.com' },
+    { node: <SiGithub />, title: 'GitHub', href: 'https://github.com' },
+    { node: <SiGithubactions />, title: 'GitHub Actions', href: 'https://github.com/features/actions' },
+    { node: <SiDocker />, title: 'Docker', href: 'https://www.docker.com' },
+    { node: <SiPostman />, title: 'Postman', href: 'https://www.postman.com' },
+    { node: <SiJira />, title: 'Jira', href: 'https://www.atlassian.com/software/jira' },
+    { node: <SiFigma />, title: 'Figma', href: 'https://www.figma.com' },
   ]
 
-  const skillCategories = [
-    {
-      title: 'Core Frontend',
-      skills: ['React', 'TypeScript', 'JavaScript', 'HTML', 'CSS'],
-    },
-    {
-      title: 'UI & Styling',
-      skills: ['Tailwind CSS', 'Bootstrap', 'Framer Motion', 'Responsive UI Design'],
-    },
-    {
-      title: 'Frameworks',
-      skills: ['Next.js', 'Vite', 'Laravel', 'Angular'],
-    },
-    {
-      title: 'Tools',
-      skills: ['Git', 'GitHub', 'Vercel', 'Hostinger', 'API Integration'],
-    },
-    {
-      title: 'Mobile',
-      skills: ['Flutter'],
-    },
-    {
-      title: 'Supporting',
-      skills: ['Python', 'Odoo ERP (Installation & Custom Modules)'],
-    },
-  ]
+  const fade = (delay = 0) =>
+    reduceMotion
+      ? { initial: { opacity: 1 }, animate: { opacity: 1 } }
+      : {
+          initial: { opacity: 0, y: 20 },
+          animate: inView ? { opacity: 1, y: 0 } : {},
+          transition: { duration: 0.45, delay, ease: 'easeOut' },
+        }
 
   return (
-    <section id="skills" className="py-20 px-4 relative overflow-hidden bg-black" aria-label="Skills section">
-      <Stars />
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/8 via-purple-900/8 to-pink-900/8 animate-gradient"></div>
-      
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="text-5xl font-bold mb-4 text-center gradient-text"
-          style={{ willChange: 'opacity, transform' }}
-        >
-          Skills
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
-          className="text-center text-gray-400 mb-12 text-lg"
-        >
-          Technologies I work with
-        </motion.p>
+    <section id="skills" className="relative scroll-mt-28 overflow-hidden px-4 py-20 sm:px-6" aria-label="Skills">
+      <div ref={ref} className="section-shell">
+        <motion.div className="mb-12 text-center" {...fade(0)}>
+          <p className="section-kicker">Capabilities</p>
+          <h2 className="section-title">Specialized where it counts.</h2>
+          <p className="section-lede">
+            The technologies behind what I build.
+          </p>
+        </motion.div>
 
-        {/* Logo Loop Section */}
-        <div ref={ref} style={{ height: '200px', position: 'relative', overflow: 'hidden', marginBottom: '3rem' }}>
-          <LogoLoop
-            logos={techLogos}
-            speed={120}
-            direction="left"
-            logoHeight={48}
-            gap={40}
-            hoverSpeed={0}
-            scaleOnHover
-            fadeOut
-            fadeOutColor="#1f2937"
-            ariaLabel="Technology partners"
-          />
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {skillCategories.map((category, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: index * 0.06, ease: 'easeOut' }}
-              className="glass-strong rounded-2xl p-6 hover:scale-105 transition-transform duration-300 bg-gray-950/80"
-              whileHover={{ y: -5 }}
-              style={{ willChange: 'opacity, transform' }}
+        <div className="mb-10 grid grid-cols-1 gap-5 lg:grid-cols-3">
+          {primaryExpertise.map((category, index) => (
+            <motion.article
+              key={category.title}
+              className="glass-strong rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-1"
+              {...fade(0.08 + index * 0.06)}
+              whileHover={reduceMotion ? undefined : { y: -4 }}
             >
-              <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                {category.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.span
-                    key={skillIndex}
-                    className="px-4 py-2 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-700/40 rounded-full text-sm text-gray-300 backdrop-blur-sm"
-                    whileHover={{ scale: 1.1, borderColor: 'rgba(139, 92, 246, 0.6)' }}
-                    transition={{ duration: 0.2 }}
+              <p className="mb-2 text-[0.65rem] uppercase tracking-[0.22em] text-cyan">Primary expertise</p>
+              <h3 className="mb-4 text-xl font-medium text-parchment">{category.title}</h3>
+              <ul className="flex flex-wrap gap-2">
+                {category.skills.map((skill) => (
+                  <li
+                    key={skill}
+                    className="rounded-full border border-lavender/25 bg-ink/50 px-3 py-1.5 text-sm text-parchment"
                   >
                     {skill}
-                  </motion.span>
+                  </li>
                 ))}
-              </div>
-            </motion.div>
+              </ul>
+            </motion.article>
           ))}
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <motion.article className="glass-strong rounded-2xl p-6" {...fade(0.28)}>
+            <h3 className="mb-4 text-lg font-medium text-parchment">Additional technologies</h3>
+            <ul className="flex flex-wrap gap-2">
+              {additional.map((skill) => (
+                <li
+                  key={skill}
+                  className="rounded-full border border-line bg-surface/60 px-3 py-1.5 text-sm text-muted"
+                >
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </motion.article>
+
+          <motion.article className="glass-strong rounded-2xl p-6" {...fade(0.34)}>
+            <h3 className="mb-4 text-lg font-medium text-parchment">Development tools & collaboration</h3>
+            <ul className="flex flex-wrap gap-2">
+              {tools.map((skill) => (
+                <li
+                  key={skill}
+                  className="rounded-full border border-line bg-surface/60 px-3 py-1.5 text-sm text-muted"
+                >
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </motion.article>
+        </div>
+
+        <div className="relative mt-12 h-24 overflow-hidden" aria-hidden="false">
+          <LogoLoop
+            logos={techLogos}
+            speed={reduceMotion ? 0 : 90}
+            direction="left"
+            logoHeight={36}
+            gap={36}
+            hoverSpeed={0}
+            scaleOnHover={!reduceMotion}
+            fadeOut
+            fadeOutColor="#090B12"
+            ariaLabel="Technologies and tools"
+          />
         </div>
       </div>
     </section>
@@ -165,4 +191,3 @@ const Skills = () => {
 }
 
 export default Skills
-

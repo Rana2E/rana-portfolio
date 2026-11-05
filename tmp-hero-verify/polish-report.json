@@ -1,0 +1,97 @@
+{
+  "hero": [
+    {
+      "width": 1920,
+      "sameLine": true,
+      "gapPx": 32,
+      "gridWidth": 1280,
+      "nameFontSize": "68px",
+      "whiteSpace": "nowrap",
+      "captionInside": true,
+      "navMax": 1280
+    },
+    {
+      "width": 1440,
+      "sameLine": true,
+      "gapPx": 32,
+      "gridWidth": 1280,
+      "nameFontSize": "55.44px",
+      "whiteSpace": "nowrap",
+      "captionInside": true,
+      "navMax": 1280
+    },
+    {
+      "width": 1280,
+      "sameLine": true,
+      "gapPx": 32,
+      "gridWidth": 1280,
+      "nameFontSize": "49.28px",
+      "whiteSpace": "nowrap",
+      "captionInside": true,
+      "navMax": 1280
+    },
+    {
+      "width": 390,
+      "sameLine": true,
+      "gapPx": -339,
+      "gridWidth": 390,
+      "nameFontSize": "34.4px",
+      "whiteSpace": "normal",
+      "captionInside": true,
+      "navMax": 390
+    }
+  ],
+  "nav": {
+    "atTop": null,
+    "samples": [
+      {
+        "scrolledTo": "about",
+        "activeHref": "#about"
+      },
+      {
+        "scrolledTo": "projects",
+        "activeHref": "#projects"
+      },
+      {
+        "scrolledTo": "skills",
+        "activeHref": "#skills"
+      },
+      {
+        "scrolledTo": "experience",
+        "activeHref": "#experience"
+      },
+      {
+        "scrolledTo": "contact",
+        "activeHref": "#contact"
+      }
+    ],
+    "afterLogo": null
+  },
+  "projectsPerf": {
+    "imageBytes": [
+      {
+        "url": "rewaq-CHDEoL0H.webp",
+        "bytes": 91460
+      },
+      {
+        "url": "unitok-DzppCRpq.webp",
+        "bytes": 43506
+      },
+      {
+        "url": "esnad-B5-GCpZI.webp",
+        "bytes": 22170
+      },
+      {
+        "url": "borikat-zmgCsOQE.webp",
+        "bytes": 23756
+      }
+    ],
+    "totalImageKB": 177,
+    "priorSvgApproxKB": 24668,
+    "scrollMetrics": {
+      "durationMs": 3409,
+      "frames": 56,
+      "longestFrameGapMs": 78
+    }
+  }
+}
